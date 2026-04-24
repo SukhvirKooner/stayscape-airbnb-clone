@@ -20,11 +20,7 @@ require_once '../includes/header.php';
             <?php while ($prop = $wishlists->fetch_assoc()): ?>
                 <a href="<?= SITE_URL ?>/pages/property.php?id=<?= $prop['id'] ?>" class="property-card">
                     <div class="card-image">
-                        <?php if ($prop['image']): ?>
-                            <img src="<?= SITE_URL ?>/uploads/<?= sanitize($prop['image']) ?>" alt="<?= sanitize($prop['title']) ?>">
-                        <?php else: ?>
-                            <div class="property-placeholder"><i class="fa-solid fa-house"></i></div>
-                        <?php endif; ?>
+                        <img src="<?= getImageUrl($prop['image']) ?>" alt="<?= sanitize($prop['title']) ?>" loading="lazy">
                         <button class="wishlist-btn active" data-property-id="<?= $prop['id'] ?>">
                             <i class="fa-solid fa-heart"></i>
                         </button>

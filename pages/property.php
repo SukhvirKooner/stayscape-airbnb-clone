@@ -74,20 +74,21 @@ require_once '../includes/header.php';
         </div>
     </div>
 
+    <?php
+    $detail_images = [
+        'https://images.unsplash.com/photo-1520483601560-389dff434fdf?w=600&h=400&fit=crop',
+        'https://images.unsplash.com/photo-1512914890251-2f96a9b0bbe2?w=600&h=400&fit=crop',
+        'https://images.unsplash.com/photo-1638454668466-e8dbd5462f20?w=600&h=400&fit=crop',
+        'https://images.unsplash.com/photo-1570702332378-1af2f4c70cb2?w=600&h=400&fit=crop',
+    ];
+    ?>
     <div class="property-image-grid">
         <div class="main-image">
-            <?php if ($property['image']): ?>
-                <img src="<?= SITE_URL ?>/uploads/<?= sanitize($property['image']) ?>" alt="<?= sanitize($property['title']) ?>">
-            <?php else: ?>
-                <div class="property-placeholder">
-                    <i class="fa-solid fa-house"></i>
-                </div>
-            <?php endif; ?>
+            <img src="<?= getImageUrl($property['image']) ?>" alt="<?= sanitize($property['title']) ?>">
         </div>
-        <div class="property-placeholder small"><i class="fa-solid fa-image"></i></div>
-        <div class="property-placeholder small"><i class="fa-solid fa-image"></i></div>
-        <div class="property-placeholder small"><i class="fa-solid fa-image"></i></div>
-        <div class="property-placeholder small"><i class="fa-solid fa-image"></i></div>
+        <?php foreach ($detail_images as $di): ?>
+            <img src="<?= $di ?>" alt="<?= sanitize($property['title']) ?>" loading="lazy">
+        <?php endforeach; ?>
     </div>
 
     <div class="property-body">

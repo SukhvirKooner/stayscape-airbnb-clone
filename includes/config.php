@@ -6,7 +6,14 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'stayscape');
 define('SITE_NAME', 'StayScape');
-define('SITE_URL', 'http://localhost/shikhar-temp');
+$protocol = 'http';
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+    $protocol = 'https';
+} elseif (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https') {
+    $protocol = 'https';
+}
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost:8080';
+define('SITE_URL', $protocol . '://' . $host);
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -38,4 +45,11 @@ function sanitize($data) {
 
 function formatPrice($price) {
     return '₹' . number_format($price, 0);
+}
+
+function getImageUrl($image) {
+    if (str_starts_with($image, 'http')) {
+        return $image;
+    }
+    return SITE_URL . '/uploads/' . $image;
 }

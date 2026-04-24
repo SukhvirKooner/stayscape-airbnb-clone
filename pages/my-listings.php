@@ -22,11 +22,7 @@ require_once '../includes/header.php';
         <?php while ($listing = $listings->fetch_assoc()): ?>
             <div class="listing-card">
                 <div class="listing-card-image">
-                    <?php if ($listing['image']): ?>
-                        <img src="<?= SITE_URL ?>/uploads/<?= sanitize($listing['image']) ?>" alt="<?= sanitize($listing['title']) ?>">
-                    <?php else: ?>
-                        <div class="property-placeholder"><i class="fa-solid fa-house"></i></div>
-                    <?php endif; ?>
+                    <img src="<?= getImageUrl($listing['image']) ?>" alt="<?= sanitize($listing['title']) ?>" loading="lazy">
                 </div>
                 <div class="listing-info">
                     <h3><a href="<?= SITE_URL ?>/pages/property.php?id=<?= $listing['id'] ?>"><?= sanitize($listing['title']) ?></a></h3>

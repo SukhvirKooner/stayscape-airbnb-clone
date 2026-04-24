@@ -20,11 +20,7 @@ require_once '../includes/header.php';
             <?php while ($booking = $bookings->fetch_assoc()): ?>
                 <div class="booking-item">
                     <div class="booking-image">
-                        <?php if ($booking['image']): ?>
-                            <img src="<?= SITE_URL ?>/uploads/<?= sanitize($booking['image']) ?>" alt="<?= sanitize($booking['title']) ?>">
-                        <?php else: ?>
-                            <div class="property-placeholder"><i class="fa-solid fa-house"></i></div>
-                        <?php endif; ?>
+                        <img src="<?= getImageUrl($booking['image']) ?>" alt="<?= sanitize($booking['title']) ?>" loading="lazy">
                     </div>
                     <div class="booking-details">
                         <h3><a href="<?= SITE_URL ?>/pages/property.php?id=<?= $booking['property_id'] ?>"><?= sanitize($booking['title']) ?></a></h3>
